@@ -1590,12 +1590,18 @@ static __inline__ screen_char_t *incrementLinePointer(
 }
 
 - (void)resetDirty {
+	if (dirty != NULL)
+	{
 		memset(dirty,0,WIDTH *HEIGHT *sizeof(char));
+	}
 }
 
 - (void)setDirty {
+	if (dirty != NULL)
+	{
 		memset(dirty, 1, WIDTH *HEIGHT *sizeof(char));
-		[refreshDelegate refresh];
+	}
+	[refreshDelegate refresh];
 }
 
 - (int)newWidth {
